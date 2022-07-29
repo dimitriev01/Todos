@@ -70,12 +70,21 @@ ul {
 .form-todos {
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
 }
 
 .form-todos__input {
   padding: 10px 15px;
   margin: 10px 0;
+}
+
+.form-todos__btn {
+  padding: 10px 20px;
+  background: #75d3fd96;
+  margin-top: 20px;
+  margin: 10px auto;
+  max-width: 150px;
+  cursor: pointer;
+  border: 1px solid #000;
 }
 
 .item-inputs>span {
@@ -126,15 +135,6 @@ ul {
 .item-checkbox:checked+label::before {
   content: '✔';
   background-color: #0b76ef;
-}
-
-.form-todos__btn {
-  padding: 10px 15px;
-  background: #75d3fd96;
-  margin-top: 20px;
-  max-width: 150px;
-  cursor: pointer;
-  border: 1px solid #000;
 }
 
 .form__btn:disabled {

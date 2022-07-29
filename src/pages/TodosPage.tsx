@@ -7,10 +7,11 @@ import { useSortedAndSearchedTodos, useSortedTodos } from '../hooks/UseTodos'
 import { IFilter, ITodo,  } from '../interfaces'
 
 interface TodosPageProps {
-  todoForIdPage(todo: ITodo): void;
+  // todoForIdPage(todo: ITodo): void;
+  todosForIdPage( todos: ITodo[]) : void;
 }
 
-export const TodosPage: React.FC<TodosPageProps> = ({ todoForIdPage }) => {
+export const TodosPage: React.FC<TodosPageProps> = ({ /*todoForIdPage*/ todosForIdPage }) => {
 
   const [todos, setTodos] = useState<ITodo[]>([])
   const [filter, setFilter] = useState<IFilter>({ sort:'', query: '' })
@@ -20,9 +21,13 @@ export const TodosPage: React.FC<TodosPageProps> = ({ todoForIdPage }) => {
   const [isChoosedTodo, setIsChoosedTodo] = useState<boolean>(false)
   const [openedTodo, setOpenedTodo] = useState<ITodo>(null!)
 
-  const getTodo = (todo: ITodo) => {
-    todoForIdPage(todo);
+  const getTodos = (todos: ITodo[]) => {
+    todosForIdPage(todos);
   }
+
+  // const getTodo = (todo: ITodo) => {
+  //   todoForIdPage(todo);
+  // }
 
   const addTodo = (title: string, body: string) => {
     const newTodo: ITodo = {
@@ -77,8 +82,9 @@ export const TodosPage: React.FC<TodosPageProps> = ({ todoForIdPage }) => {
   }, [todos])
 
   useEffect(() => {
-    getTodo(openedTodo)
-  }, [isChoosedTodo, openedTodo]);
+    // getTodo(openedTodo)
+    getTodos(todos)
+  }/*, [isChoosedTodo, openedTodo]*/);
 
   return (
     <>

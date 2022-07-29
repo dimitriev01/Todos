@@ -31,7 +31,7 @@ export const TodoForm: React.FC<TodoFormProps> = ({ onAdd }) => {
         className='form-todos__input'
         autoComplete="off"
         {...register('title', {
-          required: 'This is required',
+          required: 'Название обязательно к заполнению',
         })}
         placeholder="Введите название дела"
       />
@@ -40,7 +40,7 @@ export const TodoForm: React.FC<TodoFormProps> = ({ onAdd }) => {
         className='form-todos__input'
         autoComplete="off"
         {...register('body', {
-          required: 'This is required',
+          required: 'Описание обязательно к заполнению',
         })}
         placeholder="Введите описание дела"
       />

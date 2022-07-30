@@ -2,12 +2,13 @@ import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 
 interface TodoFormProps {
-  onAdd(title: string, body: string): void
+  onAdd(title: string, body: string, tag: string): void
 }
 
 type Inputs = {
   title: string,
   body: string
+  tag: string
 };
 
 export const TodoForm: React.FC<TodoFormProps> = ({ onAdd }) => {
@@ -21,7 +22,7 @@ export const TodoForm: React.FC<TodoFormProps> = ({ onAdd }) => {
   });
 
   const onSubmit: SubmitHandler<Inputs> = data => {
-    onAdd(data.title.trim(), data.body.trim());
+    onAdd(data.title.trim(), data.body.trim(), data.tag.trim());
     reset();
   }
 
@@ -33,7 +34,7 @@ export const TodoForm: React.FC<TodoFormProps> = ({ onAdd }) => {
         {...register('title', {
           required: 'Название обязательно к заполнению',
         })}
-        placeholder="Введите название дела"
+        placeholder="Введите название задачи"
       />
       {errors.title && <div>{errors.title.message}</div>}
       <input
@@ -42,9 +43,18 @@ export const TodoForm: React.FC<TodoFormProps> = ({ onAdd }) => {
         {...register('body', {
           required: 'Описание обязательно к заполнению',
         })}
-        placeholder="Введите описание дела"
+        placeholder="Введите описание задачи"
       />
       {errors.body && <div>{errors.body.message}</div>}
+      <input
+        className='form-todos__input'
+        autoComplete="off"
+        {...register('tag', {
+          required: 'Тег обязателен к заполнению',
+        })}
+        placeholder="Введите тег задачи"
+      />
+      {errors.tag && <div>{errors.tag.message}</div>}
       <button className='form-todos__btn' disabled={!isValid}>
         Добавить
       </button>

@@ -17,12 +17,13 @@ export const TodosPage: React.FC = () => {
   const [isChoosedTodo, setIsChoosedTodo] = useState<boolean>(false)
   const [openedTodo, setOpenedTodo] = useState<ITodo>(null!)
 
-  const addTodo = (title: string, body: string) => {
+  const addTodo = (title: string, body: string, tag: string) => {
     const newTodo: ITodo = {
+      tag,
       title,
       body,
       id: Date.now(),
-      completed: false
+      completed: false,
     }
     const isHasTheSameTodo = todos.find(todo => todo.title === newTodo.title && todo.body === newTodo.body);
     if (isHasTheSameTodo) {
@@ -89,6 +90,7 @@ export const TodosPage: React.FC = () => {
         visible={isChoosedTodo}
       >
         <TodoId
+          onToggle={toggleHandler}
           todo={openedTodo}
         />
       </Modal>

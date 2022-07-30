@@ -8,10 +8,6 @@ a {
   text-decoration: none;
 }
 
-ul {
-  list-style-type: none;
-}
-
 .nav {
   top: 0;
   position: fixed;
@@ -20,6 +16,7 @@ ul {
 }
 
 .nav-links {
+  list-style-type: none;
   display: flex;
   justify-content: right;
   padding: 0 20px;
@@ -30,7 +27,8 @@ ul {
 }
 
 .nav-link>a {
-  color: #a33edf;
+  font-weight: 600;
+  color: #795548;
 }
 
 .container {
@@ -41,8 +39,10 @@ ul {
 
 .todos {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  list-style-type: none;
+  flex-wrap: wrap;
+  padding: 0;
 }
 
 .todos-empty {
@@ -52,14 +52,16 @@ ul {
 }
 
 .todo {
-  padding: 2rem;
+  position: relative;
+  margin-right: 21px;
+  box-shadow: 0px 5px 10px 0px rgb(0 0 0 / 50%);
+  padding: 30px 41px 50px;
   border-radius: 25px;
   margin-top: 20px;
   background: #75d3fd96;
-  width: 40%;
   transition: all .1s linear;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: space-between;
 }
 
@@ -80,15 +82,14 @@ ul {
 .form-todos__btn {
   padding: 10px 20px;
   background: #75d3fd96;
-  margin-top: 20px;
   margin: 10px auto;
   max-width: 150px;
   cursor: pointer;
   border: 1px solid #000;
 }
 
-.item-inputs>span {
-  margin: 0 10px;
+.form-todos__btn:disabled {
+  cursor: default;
 }
 
 .item-input {
@@ -102,24 +103,39 @@ ul {
   transition: .2s linear all;
 }
 
+.item-input {
+  margin: 5px 0px 10px;
+}
+
 .item-input:focus {
   outline: 0;
   border: 1px solid black;
 }
 
-.item-checkbox {
+.field {
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.item-checkbox,
+.field__checkbox {
   display: none;
 }
 
-.item-checkbox+label {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.item-checkbox+label,
+.field__checkbox+label {
+  display: inline-block;
   user-select: none;
-  /*Убирает выделение текста*/
 }
 
-.item-checkbox+label::before {
+.field__checkbox+label {
+  margin-left: 10px;
+}
+
+.item-checkbox+label::before,
+.field__checkbox+label::before {
   content: '';
   display: flex;
   justify-content: center;
@@ -132,13 +148,10 @@ ul {
   border-radius: 0.25em;
 }
 
-.item-checkbox:checked+label::before {
+.item-checkbox:checked+label::before,
+.field__checkbox:checked+label::before {
   content: '✔';
   background-color: #0b76ef;
-}
-
-.form__btn:disabled {
-  cursor: default;
 }
 
 .add-item__btn {
@@ -174,6 +187,7 @@ ul {
   top: 0;
   display: none;
   background: rgba(0, 0, 0, .4);
+  z-index: 1;
 }
 
 .modal_active {
@@ -183,7 +197,7 @@ ul {
 }
 
 .modal__content {
-  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5); 
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
   position: relative;
   border-radius: 15px;
   padding: 25px;
@@ -198,6 +212,15 @@ ul {
   font-size: 20px;
 }
 
+.tools {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  left: 15px;
+}
 
 .delete:hover,
 .open:hover {
@@ -209,8 +232,4 @@ ul {
   top: 10px;
   right: 10px;
   cursor: pointer;
-}
-
-.field {
-  font-size: 17px;
 }

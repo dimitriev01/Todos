@@ -12,7 +12,7 @@ const FilterTodos: React.FC<FilterTodosProps> = ({ filter, setFilter }) => {
         <div className="filter">
             <input
                 className="input-search"
-                placeholder="Поиск по названию и описанию"
+                placeholder="Поиск по названию, описанию и тегу"
                 value={filter.query}
                 onChange={(e: ChangeEvent<HTMLInputElement>) => setFilter({ ...filter, query: e.currentTarget.value })}
             />
@@ -22,7 +22,8 @@ const FilterTodos: React.FC<FilterTodosProps> = ({ filter, setFilter }) => {
                 onChange={(selectedSort) => setFilter({ ...filter, sort: selectedSort })}
                 options={[
                     { value: 'title', name: 'По названию' },
-                    { value: 'body', name: 'По описанию' }
+                    { value: 'body', name: 'По описанию' },
+                    { value: 'tag', name: 'По тегу' }
                 ]}
                 defaultValue='Сортировка'
             />

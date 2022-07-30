@@ -6,12 +6,12 @@ type TodoListProps = {
   todos: ITodo[]
   onToggle: (id: number) => void
   onRemove: (id: number) => void
-  sendOpened: (opened: boolean) => void
+  isOpenedTodo: (opened: boolean) => void
   setOpenedTodo: (todo: ITodo) => void
   onUpdate: (todos: ITodo) => void
 }
 
-export const TodoList: React.FC<TodoListProps> = ({ todos, onRemove, onToggle, onUpdate, sendOpened, setOpenedTodo }) => {
+export const TodoList: React.FC<TodoListProps> = ({ todos, onRemove, onToggle, onUpdate, isOpenedTodo, setOpenedTodo }) => {
 
   if (!todos.length) {
     return <p className='todos-empty'>Пока дел нет!</p>
@@ -24,7 +24,7 @@ export const TodoList: React.FC<TodoListProps> = ({ todos, onRemove, onToggle, o
         return (
           <TodoItem
             setOpenedTodo={setOpenedTodo}
-            sendOpened={sendOpened}
+            isOpenedTodo={isOpenedTodo}
             onUpdate={onUpdate}
             key={todo.id}
             todo={todo}

@@ -7,12 +7,12 @@ interface TodoItemProps {
     todo: ITodo
     onToggle: (id: number) => void
     onRemove: (id: number) => void
-    sendOpened: (opened: boolean) => void
+    isOpenedTodo: (opened: boolean) => void
     setOpenedTodo: (todo: ITodo) => void
     onUpdate: (todos: ITodo) => void
 }
 
-const TodoItem: React.FC<TodoItemProps> = ({ todo, onToggle, onRemove, sendOpened, setOpenedTodo, onUpdate }) => {
+const TodoItem: React.FC<TodoItemProps> = ({ todo, onToggle, onRemove, isOpenedTodo, setOpenedTodo, onUpdate }) => {
 
     const [todoEdit, setTodoEdit] = useState<ITodo>(todo)
 
@@ -56,7 +56,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, onToggle, onRemove, sendOpene
             <span
                 className='open'
                 onClick={() => {
-                    sendOpened(true)
+                    isOpenedTodo(true)
                     setOpenedTodo(todo)
                 }}
             >

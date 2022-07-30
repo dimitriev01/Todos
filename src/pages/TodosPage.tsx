@@ -5,7 +5,7 @@ import { TodoForm } from '../components/TodoForm'
 import { TodoList } from '../components/TodoList'
 import { useSortedAndSearchedTodos, useSortedTodos } from '../hooks/UseTodos'
 import { IFilter, ITodo, } from '../interfaces'
-import { TodoIdPage } from './TodoIdPage'
+import { TodoId } from '../components/TodoId'
 
 export const TodosPage: React.FC = () => {
 
@@ -85,10 +85,10 @@ export const TodosPage: React.FC = () => {
       </Modal>
 
       <Modal
-        visible={isChoosedTodo}
         setVisible={setIsChoosedTodo}
+        visible={isChoosedTodo}
       >
-        <TodoIdPage
+        <TodoId
           todo={openedTodo}
         />
       </Modal>
@@ -101,7 +101,7 @@ export const TodosPage: React.FC = () => {
       <TodoList
         onUpdate={changeTask}
         setOpenedTodo={setOpenedTodo}
-        sendOpened={setIsChoosedTodo}
+        isOpenedTodo={setIsChoosedTodo}
         todos={sortedAndSearchedTodos}
         onToggle={toggleHandler}
         onRemove={removeHandler}

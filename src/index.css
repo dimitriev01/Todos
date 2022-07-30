@@ -45,7 +45,7 @@ ul {
   align-items: center;
 }
 
-.todos-empty{
+.todos-empty {
   text-align: center;
   color: rgb(0, 167, 227);
   font-size: 25px;
@@ -102,7 +102,7 @@ ul {
   transition: .2s linear all;
 }
 
-.item-input:focus{
+.item-input:focus {
   outline: 0;
   border: 1px solid black;
 }
@@ -183,6 +183,8 @@ ul {
 }
 
 .modal__content {
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5); 
+  position: relative;
   border-radius: 15px;
   padding: 25px;
   background: white;
@@ -202,9 +204,13 @@ ul {
   color: red
 }
 
-.todo-id-empty{
-  text-align: center;
-  font-size: 23px;
-  margin-top: 15px;
-  color: red;
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.field {
+  font-size: 17px;
 }

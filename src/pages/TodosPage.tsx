@@ -4,30 +4,18 @@ import Modal from '../components/Modal'
 import { TodoForm } from '../components/TodoForm'
 import { TodoList } from '../components/TodoList'
 import { useSortedAndSearchedTodos, useSortedTodos } from '../hooks/UseTodos'
-import { IFilter, ITodo,  } from '../interfaces'
+import { IFilter, ITodo, } from '../interfaces'
+import { TodoIdPage } from './TodoIdPage'
 
-interface TodosPageProps {
-  // todoForIdPage(todo: ITodo): void;
-  todosForIdPage( todos: ITodo[]) : void;
-}
-
-export const TodosPage: React.FC<TodosPageProps> = ({ /*todoForIdPage*/ todosForIdPage }) => {
+export const TodosPage: React.FC = () => {
 
   const [todos, setTodos] = useState<ITodo[]>([])
-  const [filter, setFilter] = useState<IFilter>({ sort:'', query: '' })
+  const [filter, setFilter] = useState<IFilter>({ sort: '', query: '' })
   const [modal, setModal] = useState<boolean>(false)
   const sortedTodos = useSortedTodos(todos, filter.sort);
   const sortedAndSearchedTodos = useSortedAndSearchedTodos(todos, filter.sort, filter.query);
   const [isChoosedTodo, setIsChoosedTodo] = useState<boolean>(false)
   const [openedTodo, setOpenedTodo] = useState<ITodo>(null!)
-
-  const getTodos = (todos: ITodo[]) => {
-    todosForIdPage(todos);
-  }
-
-  // const getTodo = (todo: ITodo) => {
-  //   todoForIdPage(todo);
-  // }
 
   const addTodo = (title: string, body: string) => {
     const newTodo: ITodo = {
@@ -81,11 +69,6 @@ export const TodosPage: React.FC<TodosPageProps> = ({ /*todoForIdPage*/ todosFor
     localStorage.setItem('todos', JSON.stringify(todos))
   }, [todos])
 
-  useEffect(() => {
-    // getTodo(openedTodo)
-    getTodos(todos)
-  }/*, [isChoosedTodo, openedTodo]*/);
-
   return (
     <>
       <button className='add-item__btn' onClick={() => setModal(true)}>
@@ -98,6 +81,15 @@ export const TodosPage: React.FC<TodosPageProps> = ({ /*todoForIdPage*/ todosFor
       >
         <TodoForm
           onAdd={addTodo}
+        />
+      </Modal>
+
+      <Modal
+        visible={isChoosedTodo}
+        setVisible={setIsChoosedTodo}
+      >
+        <TodoIdPage
+          todo={openedTodo}
         />
       </Modal>
 

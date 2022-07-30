@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { ITodo } from '../interfaces';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash, faBookOpen } from '@fortawesome/free-solid-svg-icons'
-import { useNavigate } from 'react-router-dom';
 
 interface TodoItemProps {
     todo: ITodo
@@ -15,7 +14,6 @@ interface TodoItemProps {
 
 const TodoItem: React.FC<TodoItemProps> = ({ todo, onToggle, onRemove, sendOpened, setOpenedTodo, onUpdate }) => {
 
-    const navigate = useNavigate();
     const [todoEdit, setTodoEdit] = useState<ITodo>(todo)
 
     const classes = ['todo']
@@ -60,7 +58,6 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, onToggle, onRemove, sendOpene
                 onClick={() => {
                     sendOpened(true)
                     setOpenedTodo(todo)
-                    navigate(`/todo/${todo.id}`)
                 }}
             >
                 <FontAwesomeIcon icon={faBookOpen} />

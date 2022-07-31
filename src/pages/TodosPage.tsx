@@ -17,13 +17,15 @@ export const TodosPage: React.FC = () => {
   const [isChoosedTodo, setIsChoosedTodo] = useState<boolean>(false)
   const [openedTodo, setOpenedTodo] = useState<ITodo>(null!)
 
-  const addTodo = (title: string, body: string, tag: string) => {
+  const addTodo = (title: string, body: string, tag: string, period: Date) => {
     const newTodo: ITodo = {
-      tag,
+      id: Date.now(),
       title,
       body,
-      id: Date.now(),
-      completed: false,
+      tag,
+      date: new Date,
+      period,
+      completed: false
     }
     const isHasTheSameTodo = todos.find(todo => todo.title === newTodo.title && todo.body === newTodo.body);
     if (isHasTheSameTodo) {

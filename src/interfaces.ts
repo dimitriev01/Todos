@@ -6,6 +6,8 @@ export interface ITodo {
   body: string
   tag: string
   completed: boolean
+  date: Date
+  period: Date
 }
 
 export interface IOption {
@@ -18,5 +20,9 @@ export interface IFilter {
   sort: string
 }
 
+export interface IQuote {
+  body: string,
+  author: string
+}
 
 

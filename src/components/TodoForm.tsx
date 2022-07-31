@@ -2,13 +2,14 @@ import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 
 interface TodoFormProps {
-  onAdd(title: string, body: string, tag: string): void
+  onAdd(title: string, body: string, tag: string, period: Date ): void
 }
 
 type Inputs = {
   title: string,
   body: string
   tag: string
+  period: Date
 };
 
 export const TodoForm: React.FC<TodoFormProps> = ({ onAdd }) => {
@@ -22,7 +23,7 @@ export const TodoForm: React.FC<TodoFormProps> = ({ onAdd }) => {
   });
 
   const onSubmit: SubmitHandler<Inputs> = data => {
-    onAdd(data.title.trim(), data.body.trim(), data.tag.trim());
+    onAdd(data.title.trim(), data.body.trim(), data.tag.trim(), data.period);
     reset();
   }
 
@@ -55,6 +56,15 @@ export const TodoForm: React.FC<TodoFormProps> = ({ onAdd }) => {
         placeholder="Введите тег задачи"
       />
       {errors.tag && <div>{errors.tag.message}</div>}
+      <input
+        type='date'
+        className='form-todos__input'
+        {...register('period', {
+          required: 'Срок задачи обязателен к заполнению',
+        })}
+        placeholder="Введите срок задачи"
+      />
+      {errors.period && <div>{errors.period.message}</div>}
       <button className='form-todos__btn' disabled={!isValid}>
         Добавить
       </button>

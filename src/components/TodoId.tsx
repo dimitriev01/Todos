@@ -13,10 +13,12 @@ export const TodoId: React.FC<TodoIdProps> = ({ onToggle, todo }) => {
             {
                 todo &&
                 <>
-                    <div className='field'>Страница задачи c id : <b>{todo.id}</b></div>
+                    <div className='todo-id-title'>Страница задачи c id: <b>{todo.id}</b> </div>
                     <div className='field'>Название задачи: {todo.title}</div>
                     <div className='field'>Описание задачи: {todo.body}</div>
                     <div className='field'>Тег задачи: {todo.tag}</div>
+                    <div className='field'>Дата создания задачи: {new Date(todo.date).toLocaleDateString()}</div>
+                    <div className='field'>Срок задачи: {new Date(todo.period).toLocaleDateString()}</div>
                     <div className='field'>
                         Статус задачи: {todo.completed.toString()}
                         <input

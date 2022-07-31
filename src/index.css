@@ -1,7 +1,18 @@
+*,::after,::before{
+  font-family: 'Montserrat', sans-serif;
+  box-sizing: border-box;
+}
+
+.App{
+  overflow:hidden;
+  background: #f9f3bf;
+  min-height: 100vh;
+  height: 100%;
+}
+
 body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 a {
@@ -9,6 +20,7 @@ a {
 }
 
 .nav {
+  z-index: 1;
   top: 0;
   position: fixed;
   width: 100%;
@@ -32,6 +44,7 @@ a {
 }
 
 .container {
+  padding: 0 30px;
   width: 100%;
   max-width: 1920px;
   margin: 80px auto;
@@ -110,6 +123,10 @@ a {
 .item-input:focus {
   outline: 0;
   border: 1px solid black;
+}
+
+.item-input:disabled {
+  background: transparent
 }
 
 .field {
@@ -232,4 +249,10 @@ a {
   top: 10px;
   right: 10px;
   cursor: pointer;
+}
+
+.todo-id-title{
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 10px;
 }

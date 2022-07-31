@@ -5,12 +5,14 @@ import { Router } from './components/Router'
 
 const App: React.FC = () => {
   return (
-    <BrowserRouter>
-      <Navbar />
-      <div className="container">
-       <Router/>
-      </div>
-    </BrowserRouter>
+    <div className="App">
+      <BrowserRouter>
+        <Navbar />
+        <div className="container">
+          <Router />
+        </div>
+      </BrowserRouter>
+    </div>
   )
 }
 

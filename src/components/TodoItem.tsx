@@ -50,6 +50,21 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, onToggle, onRemove, isOpenedT
                 onChange={e => setTodoEdit({ ...todoEdit, tag: e.target.value })}
             />
 
+            <span> Срок:</span>
+            <input
+                type='date'
+                className='item-input'
+                value={new Date(todoEdit.period).toLocaleDateString().split('.').reverse().join('-')}
+                onChange={e => setTodoEdit({ ...todoEdit, period: new Date(e.target.value) })}
+            />
+
+            <span> Время добавления:</span>
+            <input
+                disabled
+                className='item-input'
+                value={new Date(todoEdit.date).toLocaleDateString()}
+            />
+
             <div className="tools">
                 <span
                     className='open'

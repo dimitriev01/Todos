@@ -1,0 +1,22 @@
+.form {
+    display: flex;
+    flex-direction: column;
+
+    &__input {
+        padding: 10px 15px;
+        margin: 10px 0;
+    }
+
+    &__btn {
+        padding: 10px 20px;
+        background: #75d3fd96;
+        margin: 10px auto;
+        max-width: 150px;
+        cursor: pointer;
+        border: 1px solid #000;
+    }
+
+    &__btn:disabled {
+        cursor: default;
+    }
+}

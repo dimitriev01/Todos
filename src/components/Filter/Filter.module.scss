@@ -1,0 +1,10 @@
+.filter {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+
+  &__search {
+    padding: 10px 15px;
+    margin: 10px 0;
+  }
+}

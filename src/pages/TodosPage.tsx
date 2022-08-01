@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import FilterTodos from '../components/FilterTodos'
-import Modal from '../components/Modal'
-import { TodoForm } from '../components/TodoForm'
-import { TodoList } from '../components/TodoList'
+import FilterTodos from '../components/Filter/Filter'
+import Modal from '../components/Modal/Modal'
+import { TodoForm } from '../components/Form/Form'
+import { TodoList } from '../components/TodoList/TodoList'
 import { useSortedAndSearchedTodos, useSortedTodos } from '../hooks/UseTodos'
 import { IFilter, ITodo, } from '../interfaces'
-import { TodoId } from '../components/TodoId'
+import { TodoId } from '../components/TodoId/TodoId'
+import Btn from '../components/Btn/Btn'
+
 
 export const TodosPage: React.FC = () => {
 
@@ -74,9 +76,7 @@ export const TodosPage: React.FC = () => {
 
   return (
     <>
-      <button className='add-item__btn' onClick={() => setModal(true)}>
-        Добавить задачу
-      </button>
+      <Btn onClick={() => setModal(true)}>Добавить задачу</Btn>
 
       <Modal
         visible={modal}

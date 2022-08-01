@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { IQuote } from '../../interfaces';
-import cl from './QuoteOfDay.module.scss'
+import cl from './Quote.module.scss'
 
 const QuoteOfDay = () => {
   const api = 'https://favqs.com/api/qotd';

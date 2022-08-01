@@ -1,19 +1,20 @@
 import React from 'react'
 import { IOption } from '../../interfaces'
+import cl from '../Select/Select.module.scss'
 
 interface SelectProps {
     options: IOption[],
-    defaultValue: string,
-    onChange(value: string): void,
-    value: string
+    defaultValue?: string,
+    onChange?: (value: string) => void,
+    value?: string
 }
 
 const Select: React.FC<SelectProps> = ({ options, defaultValue, value, onChange }) => {
     return (
         <select
-            className='select-sort'
+            className={cl.select}
             value={value}
-            onChange={e => onChange(e.currentTarget.value)}
+            onChange={e => onChange && onChange(e.currentTarget.value)}
         >
             <option disabled value="">{defaultValue}</option>
             {options.map(option => {

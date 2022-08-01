@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
-import { Navbar } from './components/Navbar'
-import { Router } from './components/Router'
+import { Navbar } from './components/Navbar/Navbar'
+import { Router } from './components/Router/Router'
 
 const App: React.FC = () => {
   return (

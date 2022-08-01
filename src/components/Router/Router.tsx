@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import PageQuote from '../pages/PageQuote';
-import { TodosPage } from '../pages/TodosPage';
+import PageQuote from '../../pages/PageQuote';
+import { TodosPage } from '../../pages/TodosPage';
 
 export const Router: React.FC = () => {
 

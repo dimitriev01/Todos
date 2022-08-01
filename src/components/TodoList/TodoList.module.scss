@@ -1,0 +1,13 @@
+.todos {
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    flex-wrap: wrap;
+    padding: 0;
+}
+
+.todos__empty {
+    text-align: center;
+    color: red;
+    font-size: 23px;
+}

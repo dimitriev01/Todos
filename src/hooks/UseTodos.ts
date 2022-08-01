@@ -17,12 +17,12 @@ export const useSortedAndSearchedTodos = (todos: ITodo[], sort: string, query: s
     const sortedTodos = useSortedTodos(todos, sort);
     const sortedAndSearchedTodos = useMemo(() => {
         return sortedTodos.filter(p =>
-            p.title.toLowerCase().includes(query.toLowerCase()) ||
-            p.body.toLowerCase().includes(query.toLowerCase()) || 
-            p.tag.toLowerCase().includes(query.toLowerCase())
+            p.tag.toLowerCase().includes(query.toLowerCase()) 
         )
     }, [query, sortedTodos]);
 
     return sortedAndSearchedTodos;
 }
+
+export const today = new Date().toLocaleDateString().split('.').reverse().join('-')
 

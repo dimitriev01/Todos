@@ -1,6 +1,7 @@
 import React from 'react'
-import { ITodo } from '../interfaces'
-import TodoItem from './TodoItem'
+import { ITodo } from '../../interfaces'
+import TodoItem from '../Todo/Todo'
+import cl from './TodoList.module.scss'
 
 type TodoListProps = {
   todos: ITodo[]
@@ -14,11 +15,11 @@ type TodoListProps = {
 export const TodoList: React.FC<TodoListProps> = ({ todos, onRemove, onToggle, onUpdate, isOpenedTodo, setOpenedTodo }) => {
 
   if (!todos.length) {
-    return <p className='todos-empty'>Пока дел нет!</p>
+    return <p className={cl.todos__empty}>Пока дел нет!</p>
   }
 
   return (
-    <ul className='todos'>
+    <ul className={cl.todos}>
       {todos && todos.map(todo => {
 
         return (

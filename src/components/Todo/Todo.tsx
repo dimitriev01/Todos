@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { ITodo } from '../interfaces';
+import { ITodo } from '../../interfaces';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash, faBookOpen } from '@fortawesome/free-solid-svg-icons'
-import Select from './Select/Select';
+import  Select  from '../Select/Select';
+import cl from './Todo.module.scss'
+import { today } from '../../hooks/UseTodos';
+
 
 interface TodoItemProps {
     todo: ITodo
@@ -16,10 +19,16 @@ interface TodoItemProps {
 const TodoItem: React.FC<TodoItemProps> = ({ todo, onToggle, onRemove, isOpenedTodo, setOpenedTodo, onUpdate }) => {
 
     const [todoEdit, setTodoEdit] = useState<ITodo>(todo)
+    // const [tag, setTag] = useState<string>('')
+    // const tagOptions = [
+    //     { value: 'work', name: 'Работа' },
+    //     { value: 'study', name: 'Учёба' },
+    //     { value: 'personal', name: 'Личное' }
+    // ]
 
-    const classes = ['todo']
+    const classes = [cl['todo']]
     if (todo.completed) {
-        classes.push('todo_completed')
+        classes.push(cl['todo_completed'])
     }
 
     useEffect(() => {
@@ -31,43 +40,49 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, onToggle, onRemove, isOpenedT
 
             <span>Название:</span>
             <input
-                className='item-input'
+                className={cl.todo__input}
                 value={todoEdit.title.trim()}
                 onChange={e => setTodoEdit({ ...todoEdit, title: e.target.value })}
             />
 
             <span> Описание:</span>
             <input
-                className='item-input'
+                className={cl.todo__input}
                 value={todoEdit.body.trim()}
                 onChange={e => setTodoEdit({ ...todoEdit, body: e.target.value })}
             />
 
             <span> Тег:</span>
             <input
-                className='item-input'
+                className={cl.todo__input}
                 value={todoEdit.tag.trim()}
                 onChange={e => setTodoEdit({ ...todoEdit, tag: e.target.value })}
             />
+            {/* <Select
+                value={tag}
+                onChange={selectedTag => setTag(selectedTag)}
+                options={tagOptions}
+            /> */}
 
             <span> Срок:</span>
             <input
+                min={today}
                 type='date'
-                className='item-input'
+                className={cl.todo__input}
                 value={new Date(todoEdit.period).toLocaleDateString().split('.').reverse().join('-')}
                 onChange={e => setTodoEdit({ ...todoEdit, period: new Date(e.target.value) })}
             />
 
-            <span> Время добавления:</span>
+            <span> Дата добавления:</span>
             <input
                 disabled
-                className='item-input'
+                className={cl.todo__input}
                 value={new Date(todoEdit.date).toLocaleDateString()}
             />
 
-            <div className="tools">
+            <div className={cl.todo__tools}>
                 <span
-                    className='open'
+                    className={cl.todo__open}
                     onClick={() => {
                         isOpenedTodo(true)
                         setOpenedTodo(todo)
@@ -77,16 +92,17 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, onToggle, onRemove, isOpenedT
                 </span>
 
                 <input
-                    id={`item-checkbox${todo.id}`}
-                    className='item-checkbox'
+                    value={todo.completed ? 'Завершена' : 'Новая'}
+                    id={`status${todo.id}`}
+                    className={cl.todo__status}
                     type="checkbox"
                     checked={todo.completed}
                     onChange={() => onToggle(todo.id)}
                 />
-                <label htmlFor={`item-checkbox${todo.id}`} />
+                <label htmlFor={`status${todo.id}`} />
 
                 <span
-                    className='delete'
+                    className={cl.todo__delete}
                     onClick={e => onRemove(todo.id)}
                 >
                     <FontAwesomeIcon icon={faTrash} />

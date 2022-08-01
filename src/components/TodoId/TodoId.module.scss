@@ -1,0 +1,63 @@
+.id{
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.status {
+    display: flex;
+    align-items: center;
+}
+
+.status__circle {
+    margin-left: 20px;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+
+.status__circle_soon {
+    background: red;
+}
+
+.status__circle_late {
+    background: green;
+}
+
+.field {
+    font-size: 17px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.field__checkbox {
+    display: none;
+}
+
+.field__checkbox+label {
+    display: inline-block;
+    user-select: none;
+}
+
+.field__checkbox+label {
+    margin-left: 10px;
+}
+
+.field__checkbox+label::before {
+    content: '';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1.25em;
+    height: 1.25em;
+    border: 1px solid #adb5bd;
+    transition: all .2s linear;
+    color: white;
+    border-radius: 0.25em;
+}
+
+.field__checkbox:checked+label::before {
+    content: '✔';
+    background-color: #0b76ef;
+}

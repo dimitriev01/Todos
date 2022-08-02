@@ -25,11 +25,11 @@ export const TodosPage: React.FC = () => {
       title,
       body,
       tag,
-      date: new Date,
+      date: new Date(),
       period,
       completed: false
     }
-    const isHasTheSameTodo = todos.find(todo => todo.title === newTodo.title && todo.body === newTodo.body);
+    const isHasTheSameTodo = todos.find(todo => todo.title === newTodo.title && todo.body === newTodo.body && todo.tag === newTodo.tag && todo.date === newTodo.date);
     if (isHasTheSameTodo) {
       alert('Такая задача уже добавлена')
       return;

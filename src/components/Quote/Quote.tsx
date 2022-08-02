@@ -8,7 +8,6 @@ const QuoteOfDay = () => {
   const [error, setError] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-
   useEffect(() => {
     async function fetchData() {
       try {

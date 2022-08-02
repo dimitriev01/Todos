@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { ITodo } from '../../interfaces';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash, faBookOpen } from '@fortawesome/free-solid-svg-icons'
-import  Select  from '../Select/Select';
 import cl from './Todo.module.scss'
 import { today } from '../../hooks/UseTodos';
+import Input from '../Input/Input';
 
 
 interface TodoItemProps {
@@ -19,12 +19,7 @@ interface TodoItemProps {
 const TodoItem: React.FC<TodoItemProps> = ({ todo, onToggle, onRemove, isOpenedTodo, setOpenedTodo, onUpdate }) => {
 
     const [todoEdit, setTodoEdit] = useState<ITodo>(todo)
-    // const [tag, setTag] = useState<string>('')
-    // const tagOptions = [
-    //     { value: 'work', name: 'Работа' },
-    //     { value: 'study', name: 'Учёба' },
-    //     { value: 'personal', name: 'Личное' }
-    // ]
+
 
     const classes = [cl['todo']]
     if (todo.completed) {
@@ -39,33 +34,29 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, onToggle, onRemove, isOpenedT
         <li className={classes.join(' ')} key={todo.id}>
 
             <span>Название:</span>
-            <input
+            <Input
                 className={cl.todo__input}
                 value={todoEdit.title.trim()}
                 onChange={e => setTodoEdit({ ...todoEdit, title: e.target.value })}
             />
 
             <span> Описание:</span>
-            <input
+            <Input
                 className={cl.todo__input}
                 value={todoEdit.body.trim()}
                 onChange={e => setTodoEdit({ ...todoEdit, body: e.target.value })}
             />
 
             <span> Тег:</span>
-            <input
+            <Input
                 className={cl.todo__input}
                 value={todoEdit.tag.trim()}
                 onChange={e => setTodoEdit({ ...todoEdit, tag: e.target.value })}
             />
-            {/* <Select
-                value={tag}
-                onChange={selectedTag => setTag(selectedTag)}
-                options={tagOptions}
-            /> */}
+
 
             <span> Срок:</span>
-            <input
+            <Input
                 min={today}
                 type='date'
                 className={cl.todo__input}
@@ -74,7 +65,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, onToggle, onRemove, isOpenedT
             />
 
             <span> Дата добавления:</span>
-            <input
+            <Input
                 disabled
                 className={cl.todo__input}
                 value={new Date(todoEdit.date).toLocaleDateString()}

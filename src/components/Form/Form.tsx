@@ -1,8 +1,11 @@
-import React, { useState } from 'react'
-import { SubmitHandler, useForm } from 'react-hook-form'
+import React from 'react'
+import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { today } from '../../hooks/UseTodos';
-import Select from '../Select/Select'
+import ReactSelect from 'react-select'
 import cl from './Form.module.scss'
+import { IOption } from '../../interfaces';
+import Btn from '../Btn/Btn';
+import Input from '../Input/Input'
 
 interface TodoFormProps {
   onAdd(title: string, body: string, tag: string, period: Date): void
@@ -15,32 +18,33 @@ type Inputs = {
   period: Date
 };
 
+const tagOptions: IOption[] = [
+  { value: 'work', label: 'Работа' },
+  { value: 'study', label: 'Учёба' },
+  { value: 'personal', label: 'Личное' }
+]
+
+const getValue = (value: string) => value ? tagOptions.find(option => option.value === value) : ''
+
 export const TodoForm: React.FC<TodoFormProps> = ({ onAdd }) => {
 
   const { register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors },
+    control,
     reset,
   } = useForm<Inputs>({
-    mode: 'onBlur'
+    mode: 'onSubmit'
   });
 
   const onSubmit: SubmitHandler<Inputs> = data => {
-    onAdd(data.title.trim(), data.body.trim(), data.tag, data.period);
+    onAdd(data.title.trim(), data.body.trim(), data.tag.trim(), data.period);
     reset();
   }
 
-  // const [tag, setTag] = useState<string>('')
-  // const tagOptions = [
-  //   { value: 'work', name: 'Работа' },
-  //   { value: 'study', name: 'Учёба' },
-  //   { value: 'personal', name: 'Личное' }
-  // ]
-
-
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={cl.form}>
-      <input
+      <Input
         className={cl.form__input}
         autoComplete="off"
         {...register('title', {
@@ -48,8 +52,8 @@ export const TodoForm: React.FC<TodoFormProps> = ({ onAdd }) => {
         })}
         placeholder="Введите название задачи"
       />
-      {errors.title && <div>{errors.title.message}</div>}
-      <input
+      {errors.title && <div className={cl['form__field-error']}>{errors.title.message}</div>}
+      <Input
         className={cl.form__input}
         autoComplete="off"
         {...register('body', {
@@ -57,23 +61,31 @@ export const TodoForm: React.FC<TodoFormProps> = ({ onAdd }) => {
         })}
         placeholder="Введите описание задачи"
       />
-      {errors.body && <div>{errors.body.message}</div>}
-      <input
-        className={cl.form__input}
-        autoComplete="off"
-        {...register('tag', {
-          required: 'Тег обязателен к заполнению',
-        })}
-        placeholder="Введите тег задачи"
-      />
-      {/* <Select
-        {...register("tag")} 
-        options={tagOptions}
-      >
-      </Select> */}
+      {errors.body && <div className={cl['form__field-error']}>{errors.body.message}</div>}
 
-      {errors.tag && <div>{errors.tag.message}</div>}
-      <input
+      <Controller
+        rules={{
+          required: 'Тег обязателен к заполнению'
+        }}
+        render={
+          ({ field: { onChange, value }, fieldState: { error } }) => (
+            <div>
+              <ReactSelect
+                className={cl['form__custom-select']}
+                classNamePrefix='custom-select'
+                placeholder='Тег'
+                options={tagOptions}
+                value={getValue(value)}
+                onChange={(newValue) => onChange((newValue as IOption).label)}
+              />
+              {error && <div className={cl['form__field-error']}>{error.message}</div>}
+            </div>
+          ) }
+        control={control}
+        name='tag'
+      />
+
+      <Input
         type='date'
         min={today}
         className={cl.form__input}
@@ -82,10 +94,10 @@ export const TodoForm: React.FC<TodoFormProps> = ({ onAdd }) => {
         })}
         placeholder="Введите срок задачи"
       />
-      {errors.period && <div>{errors.period.message}</div>}
-      <button className={cl.form__btn} disabled={!isValid}>
+      {errors.period && <div className={cl['form__field-error']}>{errors.period.message}</div>}
+      <Btn className={cl['form__btn']}>
         Добавить
-      </button>
+      </Btn>
     </form>
   )
 }

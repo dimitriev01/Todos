@@ -4,12 +4,13 @@ import cl from '../Select/Select.module.scss'
 
 interface SelectProps {
     options: IOption[],
+    className?: string;
     defaultValue?: string,
     onChange?: (value: string) => void,
     value?: string
 }
 
-const Select: React.FC<SelectProps> = ({ options, defaultValue, value, onChange }) => {
+const Select: React.FC<SelectProps> = ({ options, defaultValue, value, onChange, className }) => {
     return (
         <select
             className={cl.select}
@@ -20,7 +21,7 @@ const Select: React.FC<SelectProps> = ({ options, defaultValue, value, onChange 
             {options.map(option => {
                 return (
                     <option key={option.value} value={option.value}>
-                        {option.name}
+                        {option.label}
                     </option>
                 )
             })}

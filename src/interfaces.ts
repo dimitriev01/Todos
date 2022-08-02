@@ -1,17 +1,17 @@
 
 
 export interface ITodo {
-  id: number
+  readonly id: number
   title: string
   body: string
   tag: string
   completed: boolean
-  date: Date
+  readonly date: Date
   period: Date
 }
 
 export interface IOption {
-  name: string
+  label: string
   value: string
 };
 

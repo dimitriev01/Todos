@@ -1,8 +1,8 @@
-import React, { ChangeEvent } from "react";
+import React from "react";
 import { IFilter } from "../../interfaces";
+import Input from "../Input/Input";
 import Select from "../Select/Select";
 import cl from './Filter.module.scss'
-// import Select from 'react-select'
 
 interface FilterTodosProps {
     filter: IFilter,
@@ -12,20 +12,21 @@ interface FilterTodosProps {
 const FilterTodos: React.FC<FilterTodosProps> = ({ filter, setFilter }) => {
 
     const sortOptions = [
-        { value: 'title', name: 'По названию' },
-        { value: 'date', name: 'По дате' }
+        { value: 'title', label: 'По названию' },
+        { value: 'date', label: 'По дате' }
     ]
 
     return (
         <div className={cl.filter}>
-            <input
-                className={cl['filter__search']}
+            <Input
+                className={cl.search}
                 placeholder="Фильтр по тегу"
                 value={filter.query}
-                onChange={(e: ChangeEvent<HTMLInputElement>) => setFilter({ ...filter, query: e.currentTarget.value })}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFilter({ ...filter, query: e.currentTarget.value })}
             />
 
             <Select
+                className={cl.sort}
                 value={filter.sort}
                 onChange={(selectedSort) => setFilter({ ...filter, sort: selectedSort })}
                 options={sortOptions}

@@ -1,11 +1,12 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
-import cl from  './Modal.module.scss'
+import cl from './Modal.module.scss'
 
 interface ModalProps {
     visible: boolean,
     setVisible(visible: boolean): void
+    children: React.ReactNode;
 }
 
 const Modal: React.FC<ModalProps> = ({ children, visible, setVisible }) => {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ITodo } from '../../interfaces';
 import cl from './TodoId.module.scss'
 

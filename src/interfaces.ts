@@ -5,9 +5,10 @@ export interface ITodo {
   title: string
   body: string
   tag: string
-  completed: boolean
+  status: string
   readonly date: Date
   period: Date
+  disabled: boolean
 }
 
 export interface IOption {

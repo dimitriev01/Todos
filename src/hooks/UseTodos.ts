@@ -17,7 +17,8 @@ export const useSortedAndSearchedTodos = (todos: ITodo[], sort: string, query: s
     const sortedTodos = useSortedTodos(todos, sort);
     const sortedAndSearchedTodos = useMemo(() => {
         return sortedTodos.filter(p =>
-            p.tag.toLowerCase().includes(query.toLowerCase()) 
+            p.tag.toLowerCase().includes(query.toLowerCase()) ||
+            p.status.includes(query)
         )
     }, [query, sortedTodos]);
 

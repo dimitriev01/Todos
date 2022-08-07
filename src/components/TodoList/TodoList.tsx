@@ -5,14 +5,13 @@ import cl from './TodoList.module.scss'
 
 type TodoListProps = {
   todos: ITodo[]
-  onToggle: (id: number) => void
   onRemove: (id: number) => void
   isOpenedTodo: (opened: boolean) => void
   setOpenedTodo: (todo: ITodo) => void
   onUpdate: (todos: ITodo) => void
 }
 
-export const TodoList: React.FC<TodoListProps> = ({ todos, onRemove, onToggle, onUpdate, isOpenedTodo, setOpenedTodo }) => {
+export const TodoList: React.FC<TodoListProps> = ({ todos, onRemove, onUpdate, isOpenedTodo, setOpenedTodo }) => {
 
   if (!todos.length) {
     return <p className={cl.todos__empty}>Пока дел нет!</p>
@@ -30,7 +29,6 @@ export const TodoList: React.FC<TodoListProps> = ({ todos, onRemove, onToggle, o
             key={todo.id}
             todo={todo}
             onRemove={onRemove}
-            onToggle={onToggle}
           />
         )
       })}

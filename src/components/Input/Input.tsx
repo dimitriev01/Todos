@@ -1,14 +1,18 @@
-import React, { InputHTMLAttributes } from 'react';
+import React from 'react';
 import cl from './Input.module.scss'
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-    className: string;
-    ref: string;
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement>{
+    disabled?: boolean,
+    className?: string,
+    ref: string
 }
 
-const Input = React.forwardRef<HTMLInputElement, InputProps>(({ className, ...otherProps }, ref) => {
+
+const Input = React.forwardRef<HTMLInputElement, InputProps>(({ className, disabled, ...otherProps }, ref) => {
+
     return (
         <input
+            disabled={disabled}
             className={[cl.input, className].join(" ")}
             {...otherProps}
             ref={ref}

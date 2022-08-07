@@ -44,57 +44,71 @@ export const TodoForm: React.FC<TodoFormProps> = ({ onAdd }) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={cl.form}>
-      <Input
-        className={cl.form__input}
-        autoComplete="off"
-        {...register('title', {
-          required: 'Название обязательно к заполнению',
-        })}
-        placeholder="Введите название задачи"
-      />
-      {errors.title && <div className={cl['form__field-error']}>{errors.title.message}</div>}
-      <Input
-        className={cl.form__input}
-        autoComplete="off"
-        {...register('body', {
-          required: 'Описание обязательно к заполнению',
-        })}
-        placeholder="Введите описание задачи"
-      />
-      {errors.body && <div className={cl['form__field-error']}>{errors.body.message}</div>}
+      <div className={cl['form__item']}>
+        <div>Название задачи: </div>
+        <Input
+          className={cl.form__item__input}
+          autoComplete="off"
+          {...register('title', {
+            required: 'Название обязательно к заполнению',
+          })}
+          placeholder="Введите название задачи"
+        />
+        {errors.title && <div className={cl['form__item__error']}>{errors.title.message}</div>}
+      </div>
 
-      <Controller
-        rules={{
-          required: 'Тег обязателен к заполнению'
-        }}
-        render={
-          ({ field: { onChange, value }, fieldState: { error } }) => (
-            <div>
-              <ReactSelect
-                className={cl['form__custom-select']}
-                classNamePrefix='custom-select'
-                placeholder='Тег'
-                options={tagOptions}
-                value={getValue(value)}
-                onChange={(newValue) => onChange((newValue as IOption).label)}
-              />
-              {error && <div className={cl['form__field-error']}>{error.message}</div>}
-            </div>
-          ) }
-        control={control}
-        name='tag'
-      />
+      <div className={cl['form__item']}>
+        <div>Введите описание задачи: </div>
+        <Input
+          className={cl.form__item__input}
+          autoComplete="off"
+          {...register('body', {
+            required: 'Описание обязательно к заполнению',
+          })}
+          placeholder="Введите описание задачи"
+        />
+        {errors.body && <div className={cl['form__item__error']}>{errors.body.message}</div>}
+      </div>
 
-      <Input
-        type='date'
-        min={today}
-        className={cl.form__input}
-        {...register('period', {
-          required: 'Срок задачи обязателен к заполнению',
-        })}
-        placeholder="Введите срок задачи"
-      />
-      {errors.period && <div className={cl['form__field-error']}>{errors.period.message}</div>}
+      <div className={cl['form__item']}>
+        <div>Тег задачи: </div>
+        <Controller
+          rules={{
+            required: 'Тег обязателен к заполнению'
+          }}
+          render={
+            ({ field: { onChange, value }, fieldState: { error } }) => (
+              <div>
+                <ReactSelect
+                  className={cl['form__item__custom-select']}
+                  classNamePrefix='custom-select'
+                  placeholder='Выберите тег задачи'
+                  options={tagOptions}
+                  value={getValue(value)}
+                  onChange={(newValue) => onChange((newValue as IOption).label)}
+                />
+                {error && <div className={cl['form__item__error']}>{error.message}</div>}
+              </div>
+            )}
+          control={control}
+          name='tag'
+        />
+      </div>
+
+      <div className={cl['form__item']}>
+        <div>Срок задачи: </div>
+        <Input
+          type='date'
+          min={today}
+          className={cl.form__item__input}
+          {...register('period', {
+            required: 'Срок задачи обязателен к заполнению',
+          })}
+          placeholder="Выберите срок задачи"
+        />
+        {errors.period && <div className={cl['form__item__error']}>{errors.period.message}</div>}
+      </div>
+
       <Btn className={cl['form__btn']}>
         Добавить
       </Btn>

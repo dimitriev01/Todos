@@ -27,7 +27,8 @@ export const TodosPage: React.FC = () => {
       tag,
       date: new Date(),
       period,
-      completed: false
+      disabled: true,
+      status: 'Новая'
     }
     const isHasTheSameTodo = todos.find(todo => todo.title === newTodo.title && todo.body === newTodo.body && todo.tag === newTodo.tag && todo.date === newTodo.date);
     if (isHasTheSameTodo) {
@@ -37,17 +38,6 @@ export const TodosPage: React.FC = () => {
     setTodos(prev => [newTodo, ...prev])
     // setTodos([newTodo, ...todos])
     setModal(false)
-  }
-
-  const toggleHandler = (id: number) => {
-    setTodos(prev =>
-      prev.map(todo => {
-        if (todo.id === id) {
-          todo.completed = !todo.completed
-        }
-        return todo
-      })
-    )
   }
 
   const removeHandler = (id: number) => {
@@ -92,8 +82,8 @@ export const TodosPage: React.FC = () => {
         visible={isChoosedTodo}
       >
         <TodoId
-          onToggle={toggleHandler}
           todo={openedTodo}
+          onUpdate={changeTask}
         />
       </Modal>
 
@@ -107,7 +97,6 @@ export const TodosPage: React.FC = () => {
         setOpenedTodo={setOpenedTodo}
         isOpenedTodo={setIsChoosedTodo}
         todos={sortedAndSearchedTodos}
-        onToggle={toggleHandler}
         onRemove={removeHandler}
       />
     </>

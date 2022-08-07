@@ -28,7 +28,7 @@ const FilterTodos: React.FC<FilterTodosProps> = ({ filter, setFilter }) => {
             <Select
                 className={cl.sort}
                 value={filter.sort}
-                onChange={(selectedSort) => setFilter({ ...filter, sort: selectedSort })}
+                onChange={selectedSort => setFilter({ ...filter, sort: selectedSort })}
                 options={sortOptions}
                 defaultValue='Сортировка'
             />

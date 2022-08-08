@@ -10,11 +10,14 @@ interface SelectProps {
     value: string
     disabled?: boolean
     id?: string
+    ref?: React.ForwardedRef<HTMLSelectElement>
 }
 
-const Select: React.FC<SelectProps> = ({ options, defaultValue, value, onChange, className, disabled, id }) => {
+const Select: React.FC<SelectProps> = React.forwardRef(({ options, defaultValue, value, onChange, className, disabled, id }, ref) => {
+
     return (
         <select
+            ref={ref}
             id={id}
             disabled={disabled}
             className={[cl.select, className].join(' ')}
@@ -24,13 +27,13 @@ const Select: React.FC<SelectProps> = ({ options, defaultValue, value, onChange,
             <option disabled value=''>{defaultValue}</option>
             {options.map(option => {
                 return (
-                    <option key={option.value} value={option.value}>
+                    <option key={option.value} value={option.value === 'date' || option.value === 'title' ? option.value : option.label}>
                         {option.label}
                     </option>
                 )
             })}
         </select>
     )
-}
+})
 
 export default Select;

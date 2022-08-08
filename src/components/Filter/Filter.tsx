@@ -18,19 +18,19 @@ const FilterTodos: React.FC<FilterTodosProps> = ({ filter, setFilter }) => {
 
     return (
         <div className={cl.filter}>
-            <Input
-                className={cl.search}
-                placeholder="Фильтр по тегу"
-                value={filter.query}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFilter({ ...filter, query: e.currentTarget.value })}
-            />
-
             <Select
-                className={cl.sort}
+                className={cl.filter__sort}
                 value={filter.sort}
                 onChange={selectedSort => setFilter({ ...filter, sort: selectedSort })}
                 options={sortOptions}
                 defaultValue='Сортировка'
+            />
+            
+            <Input
+                className={cl.filter__search}
+                placeholder="Фильтр по тегу и статусу"
+                value={filter.query}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFilter({ ...filter, query: e.currentTarget.value })}
             />
 
         </div>

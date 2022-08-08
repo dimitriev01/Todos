@@ -80,7 +80,7 @@ export const TodoForm: React.FC<TodoFormProps> = ({ onAdd }) => {
             ({ field: { onChange, value }, fieldState: { error } }) => (
               <div>
                 <ReactSelect
-                  className={cl['form__item__custom-select']}
+                  className={cl['form__item__tag']}
                   classNamePrefix='custom-select'
                   placeholder='Выберите тег задачи'
                   options={tagOptions}

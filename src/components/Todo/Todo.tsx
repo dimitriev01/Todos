@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { ITodo } from '../../interfaces';
+import { IOption, ITodo } from '../../interfaces';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash, faBookOpen, faEdit } from '@fortawesome/free-solid-svg-icons'
 import cl from './Todo.module.scss'
 import { today } from '../../hooks/UseTodos';
 import Input from '../Input/Input';
 import Select from '../Select/Select';
-
 
 interface TodoItemProps {
     todo: ITodo
@@ -16,23 +15,32 @@ interface TodoItemProps {
     onUpdate: (todos: ITodo) => void
 }
 
+const tagOptions: IOption[] = [
+    { value: 'work', label: 'Работа' },
+    { value: 'study', label: 'Учёба' },
+    { value: 'personal', label: 'Личное' }
+]
+
+const optionsStatus: IOption[] = [
+    { value: 'new', label: "Новая" },
+    { value: 'inWork', label: "В работе" },
+    { value: 'done', label: "Завершена" },
+]
+
 const TodoItem: React.FC<TodoItemProps> = ({ todo, onRemove, isOpenedTodo, setOpenedTodo, onUpdate }) => {
 
     const [todoEdit, setTodoEdit] = useState<ITodo>(todo)
 
     const nameTaskRef = React.useRef<HTMLInputElement>(null);
     const descriptionTaskRef = React.useRef<HTMLInputElement>(null);
-    const tagTaskRef = React.useRef<HTMLInputElement>(null);
+    const tagTaskRef = React.useRef<HTMLSelectElement>(null);
     const periodRef = React.useRef<HTMLInputElement>(null);
     const inputsRefs = [nameTaskRef, descriptionTaskRef, tagTaskRef, periodRef];
 
-    const classes = [cl.todo]
-    if (todo.status === 'done') {
-        classes.push(cl['todo_completed'])
-    } else
-        if (todo.status === 'inWork') {
-            classes.push(cl['todo_in-work'])
-        }
+    const edit = [cl.todo__tools__edit]
+    if (!todo.disabled) {
+        edit.push(cl.todo__tools__edit_active)
+    }
 
     const giveEdit = () => {
         setTodoEdit({ ...todoEdit, disabled: !todoEdit.disabled })
@@ -59,7 +67,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, onRemove, isOpenedTodo, setOp
     }, [todo.status])
 
     return (
-        <li className={classes.join(' ')} key={todo.id}>
+        <li className={cl.todo} key={todo.id}>
 
             <span>Название:</span>
             <Input
@@ -80,12 +88,13 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, onRemove, isOpenedTodo, setOp
             />
 
             <span> Тег:</span>
-            <Input
+            <Select
                 disabled={todoEdit.disabled}
+                className={cl.todo__select}
                 ref={tagTaskRef}
-                className={cl.todo__input}
-                value={todoEdit.tag.trim()}
-                onChange={e => setTodoEdit({ ...todoEdit, tag: e.target.value })}
+                options={tagOptions}
+                value={todoEdit.tag}
+                onChange={selectedtag => setTodoEdit({ ...todoEdit, tag: selectedtag })}
             />
 
             <span> Срок:</span>
@@ -108,34 +117,29 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, onRemove, isOpenedTodo, setOp
 
             <div className={cl.todo__tools}>
                 <span
-                    className={cl.todo__open}
+                    className={cl.todo__tools__open}
                     onClick={todoOpenHandler}
                 >
                     <FontAwesomeIcon icon={faBookOpen} />
                 </span>
 
                 <Select
-                    disabled
                     id={`status${todo.id}`}
-                    className={cl.todo__select}
+                    className={cl.todo__tools__status}
                     value={todo.status}
                     onChange={selectedStatus => selectHandler(selectedStatus)}
-                    options={[
-                        { value: 'new', label: "Новая" },
-                        { value: 'inWork', label: "В работе" },
-                        { value: 'done', label: "Завершена" },
-                    ]}
+                    options={optionsStatus}
                 />
 
                 <span
-                    className={cl.todo__edit}
+                    className={edit.join(' ')}
                     onClick={giveEdit}
                 >
                     <FontAwesomeIcon icon={faEdit} />
                 </span>
 
                 <span
-                    className={cl.todo__delete}
+                    className={cl.todo__tools__delete}
                     onClick={e => onRemove(todo.id)}
                 >
                     <FontAwesomeIcon icon={faTrash} />

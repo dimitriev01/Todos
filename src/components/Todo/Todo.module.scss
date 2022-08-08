@@ -9,7 +9,6 @@
     transition: all .1s linear;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
 
     &__input {
         margin: 5px 0px 10px;
@@ -17,7 +16,6 @@
         line-height: 1.5;
         font-size: 16px;
         color: #212529;
-        background-color: #fff;
         border: 1px solid #bdbdbd;
         border-radius: 0.25rem;
         transition: .2s linear all;
@@ -28,39 +26,15 @@
         border: 1px solid rgba(0, 0, 255, 0.536);
     }
 
-    &__input:disabled {
+    &__input:disabled,
+    &__select:disabled {
         background: transparent
     }
 
     &__select {
-        margin-top: 0;
-    }
-
-    &__status {
-        display: none;
-    }
-
-    &__status+label {
-        display: inline-block;
-        user-select: none;
-    }
-
-    &__status+label::before {
-        content: '';
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 1.25em;
-        height: 1.25em;
-        border: 1px solid #adb5bd;
-        transition: all .2s linear;
-        color: white;
-        border-radius: 0.25em;
-    }
-
-    &__status:checked+label::before {
-        content: '✔';
-        background-color: #0b76ef;
+        font-size: 15px;
+        color: #212529;
+        margin: 5px 0px 10px;
     }
 
     &__tools {
@@ -71,27 +45,28 @@
         bottom: 15px;
         right: 15px;
         left: 15px;
+
+        &__status {
+            margin-top: 0;
+        }
+
+        &__open,
+        &__delete,
+        &__edit {
+            cursor: pointer;
+            font-style: normal;
+            font-size: 22px;
+            user-select: none;
+        }
+
+        &__open:hover,
+        &__delete:hover,
+        &__edit:hover {
+            color: blue;
+        }
+
+        &__edit_active {
+            color: red
+        }
     }
-
-    &__open,
-    &__delete,
-    &__edit {
-        cursor: pointer;
-        font-style: normal;
-        font-size: 22px;
-    }
-
-    &__open:hover,
-    &__delete:hover,
-    &__edit:hover {
-        color: red
-    }
-}
-
-.todo_completed {
-    background: #7dff62;
-}
-
-.todo_in-work {
-    background:#e97272b3;
 }

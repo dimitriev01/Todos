@@ -1,0 +1,19 @@
+.custom-select {
+    &__control {
+        border: 1px solid #000 !important;
+        box-shadow: none !important;
+
+        &--menu-is-open {
+            border-color: #000 !important;
+        }
+    }
+
+    &__control--is-focused {
+        border: 1.5px solid rgba(0, 0, 255, 0.536) !important;
+    }
+
+    &__value-container {
+        padding: 0 15px !important;
+        cursor: text !important;
+    }
+}

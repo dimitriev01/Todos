@@ -5,7 +5,11 @@
     &__item {
         margin-bottom: 10px;
 
-        &__custom-select {
+        &__input {
+            width: 100%;
+        }
+
+        &__tag {
             margin: 10px 0px;
             font-size: 14px;
         }

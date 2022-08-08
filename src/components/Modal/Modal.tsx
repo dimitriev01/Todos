@@ -20,7 +20,7 @@ const Modal: React.FC<ModalProps> = ({ children, visible, setVisible }) => {
     return (
         <div className={rootClass.join(' ')} >
             <div className={cl.modal__content} onClick={(e) => e.stopPropagation()}>
-                <FontAwesomeIcon className='close' onClick={() => setVisible(false)} icon={faClose} />
+                <FontAwesomeIcon className={cl.modal__close} onClick={() => setVisible(false)} icon={faClose} />
                 {children}
             </div>
         </div>

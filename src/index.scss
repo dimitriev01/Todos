@@ -28,11 +28,4 @@ a {
   margin: 80px auto;
 }
 
-.close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  cursor: pointer;
-}
-
 @import './components/Select/ReactSelect.module.scss'

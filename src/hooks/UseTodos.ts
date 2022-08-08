@@ -16,14 +16,15 @@ export const useSortedTodos = (todos: ITodo[], sort: string) => {
 export const useSortedAndSearchedTodos = (todos: ITodo[], sort: string, query: string) => {
     const sortedTodos = useSortedTodos(todos, sort);
     const sortedAndSearchedTodos = useMemo(() => {
+        let queryLowerCase = query.toLowerCase()
         return sortedTodos.filter(p =>
-            p.tag.toLowerCase().includes(query.toLowerCase()) ||
-            p.status.toLowerCase().includes(query.toLowerCase())
+            p.tag.toLowerCase().includes(queryLowerCase) ||
+            p.status.toLowerCase().includes(queryLowerCase)
         )
     }, [query, sortedTodos]);
 
     return sortedAndSearchedTodos;
 }
 
-export const today = new Date().toLocaleDateString().split('.').reverse().join('-')
+export const useToday = new Date().toLocaleDateString().split('.').reverse().join('-')
 

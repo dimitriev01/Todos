@@ -14,13 +14,12 @@ type TodoListProps = {
 export const TodoList: React.FC<TodoListProps> = ({ todos, onRemove, onUpdate, isOpenedTodo, setOpenedTodo }) => {
 
   if (!todos.length) {
-    return <p className={cl.todos__empty}>Пока дел нет!</p>
+    return (<p className={cl.todos__empty}>Пока дел нет!</p>)
   }
 
   return (
     <ul className={cl.todos}>
       {todos && todos.map(todo => {
-
         return (
           <TodoItem
             setOpenedTodo={setOpenedTodo}

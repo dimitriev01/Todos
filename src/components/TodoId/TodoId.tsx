@@ -29,11 +29,11 @@ export const TodoId: React.FC<TodoIdProps> = ({ onUpdate, todo }) => {
             <div className={cl.field}>Дата создания задачи: {new Date(todo.date).toLocaleDateString()}</div>
             <div className={cl.field}>Срок задачи: {new Date(todo.period).toLocaleDateString()}</div>
             <div className={cl.field}>Редактирование: {String(!todo.disabled)}</div>            
-            <div className={[cl.field, cl.field_status].join(' ')}>
+            <div className={[cl.field, cl['field-status']].join(' ')}>
                 Статус задачи:
                 <Select
                     id={`status${todo.id}`}
-                    className={cl['todo-status']}
+                    className={cl['field-status__select']}
                     value={todo.status}
                     onChange={selectedStatus => onUpdate({ ...todo, status: selectedStatus })}
                     options={[

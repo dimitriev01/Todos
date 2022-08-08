@@ -31,15 +31,10 @@
     margin-bottom: 5px;
 }
 
-.field_status {
+.field-status {
     align-items: baseline;
+    &__select{
+        margin-left: 15px;
+    }
 }
 
-.status{
-    display: flex;
-    align-items: baseline;
-}
-
-.todo-status{
-    margin-left: 15px;
-}

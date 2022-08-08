@@ -1,6 +1,6 @@
 import React from 'react'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
-import { today } from '../../hooks/UseTodos';
+import { useToday } from '../../hooks/UseTodos';
 import ReactSelect from 'react-select'
 import cl from './Form.module.scss'
 import { IOption } from '../../interfaces';
@@ -99,7 +99,7 @@ export const TodoForm: React.FC<TodoFormProps> = ({ onAdd }) => {
         <div>Срок задачи: </div>
         <Input
           type='date'
-          min={today}
+          min={useToday}
           className={cl.form__item__input}
           {...register('period', {
             required: 'Срок задачи обязателен к заполнению',

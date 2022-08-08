@@ -3,7 +3,7 @@ import { IOption, ITodo } from '../../interfaces';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash, faBookOpen, faEdit } from '@fortawesome/free-solid-svg-icons'
 import cl from './Todo.module.scss'
-import { today } from '../../hooks/UseTodos';
+import { useToday } from '../../hooks/UseTodos';
 import Input from '../Input/Input';
 import Select from '../Select/Select';
 
@@ -101,7 +101,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, onRemove, isOpenedTodo, setOp
             <Input
                 disabled={todoEdit.disabled}
                 ref={periodRef}
-                min={today}
+                min={useToday}
                 type='date'
                 className={cl.todo__input}
                 value={new Date(todoEdit.period).toLocaleDateString().split('.').reverse().join('-')}

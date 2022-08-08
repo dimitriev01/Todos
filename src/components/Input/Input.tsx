@@ -4,7 +4,7 @@ import cl from './Input.module.scss'
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement>{
     disabled?: boolean,
     className?: string,
-    ref: string
+    ref?: React.ForwardedRef<HTMLInputElement>
 }
 
 

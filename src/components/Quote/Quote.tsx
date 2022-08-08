@@ -1,6 +1,8 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { IQuote } from '../../interfaces';
 import cl from './Quote.module.scss'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faQuoteLeft } from '@fortawesome/free-solid-svg-icons';
 
 const QuoteOfDay = () => {
   const api = 'https://favqs.com/api/qotd';
@@ -18,6 +20,7 @@ const QuoteOfDay = () => {
       } catch (err) {
         setIsLoading(false);
         setError(true)
+        console.log(err);
       }
     }
 
@@ -41,10 +44,10 @@ const QuoteOfDay = () => {
       </div>
       {
         isLoading ?
-        <p>Идет загрузка...</p>
-        :
+          <p>Идет загрузка...</p>
+          :
           <>
-            <i className={['fa-solid', 'fa-quote-left', cl.quote__icon].join(' ')}></i>
+            <FontAwesomeIcon icon={faQuoteLeft} className={cl.quote__icon} />
             <div className={cl.quote__text}>
               {quote.body}
             </div>
